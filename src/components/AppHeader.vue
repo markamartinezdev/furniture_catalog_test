@@ -16,14 +16,17 @@
 
     <!-- Actions on the right side of header (cart, user settings...) -->
     <div class="header-right-actions">
-      <span class="header-cart"></span>
+      <div class="header-contact">
+        <span class="header-contact-text name">{{salesRep.name}}</span>
+        <span class="header-contact-text phone-number">{{salesRep.phoneNumber}}</span>
+      </div>
     </div>
   </header>
 </template>
 
 <script>
 
-import { ManufacturerID, CompanyName } from '../TestData.json';
+import { ManufacturerID, CompanyName, SalesRep } from '../TestData.json';
 
 export default {
   name: 'app-header',
@@ -31,6 +34,7 @@ export default {
     return {
       manufacturerId: 0,
       companyName: '',
+      salesRep: {},
     };
   },
   mounted() {
@@ -38,6 +42,10 @@ export default {
     // Set manufaturerId form returned data
     this.manufacturerId = ManufacturerID;
     this.companyName = CompanyName;
+    this.salesRep = {
+      name: `${SalesRep.FirstName}  ${SalesRep.LastName}`,
+      phoneNumber: SalesRep.Phone,
+    };
   },
   computed: {
     clientLogo() {
@@ -63,6 +71,9 @@ header {
     background-color: #f9f9f9;
     padding: 15px;
     box-shadow: 1px 1px 10px 1px #ececec;
+    @include mobile {
+      padding: 10px;
+    }
 }
 .header {
   &-left-actions {
@@ -89,7 +100,31 @@ header {
   }
   &-company-name {
     font-size: 20px;
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  &-contact {
+    text-align: right;
+  }
+  &-contact-text {
+    display: inline-block;
+    margin: 0 5px;
+    @include mobile {
+      font-size: 12px;
+      margin: 0;
+      display: block;
+    }
+    &.phone-number:before {
+      content: '\e942';
+      font-family: 'icons';
+      margin-right: 5px;
+    }
+    &.name:before {
+      content: '\e971';
+      font-family: 'icons';
+      margin-right: 5px;
+    }
   }
 }
 

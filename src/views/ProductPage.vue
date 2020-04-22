@@ -6,16 +6,14 @@
     <div class="product-information">
       <div class="product-left">
         <div class="product-image-wrapper" >
-          <img class="product-image" :src="photoName+'?width=650&height=650'">
+          <img class="product-image" :src="photoName+'?width=450&height=450'">
         </div>
       </div>
 
       <div class="product-right">
         <div class="product-right-top">
           <span class="product-price">${{price}}</span>
-          <button class="product-add-to-cart" :class="{ disabled : !addToCartActive }" >
-            {{addToCartText}}
-          </button>
+          <span class="product-available">{{available}}</span>
         </div>
 
         <div class="product-details">
@@ -27,7 +25,7 @@
           </div>
 
           <div v-if="dimensions" class="product-messurments product-detail-item">
-            <span class="product-label">Dimentsions</span>
+            <span class="product-label">Dimensions</span>
             <span class="detail-text">{{dimensions}}</span>
           </div>
 
@@ -106,13 +104,9 @@ export default {
     clientLogo() {
       return `http://images.repzio.com/productimages/${this.manufacturerID}/logo${this.manufacturerID}_lg.jpg?width=100`;
     },
-    addToCartActive() {
-      return this.onHandQuantity > 0;
+    available() {
+      return this.onHandQuantity > 0 ? `${this.onHandQuantity} available` : 'Out of stock';
     },
-    addToCartText() {
-      return this.addToCartActive ? 'Add to cart' : 'Out of stock';
-    },
-    
   },
 };
 </script>
@@ -174,20 +168,9 @@ export default {
     &-price {
       font-size: 30px;
     }
-    &-add-to-cart {
+    &-available {
       display: block;
-      background-color: $button-color;
-      border: none;
-      color: #fff;
-      padding: 5px 15px;
-      border-radius: 2px;
       margin-top: 15px;
-      cursor: pointer;
-      &.disabled {
-        background-color: $button-color-disabled;
-        cursor: default;
-        pointer-events: none;
-      }
     }
     &-detail-item {
       margin-bottom: 30px;
