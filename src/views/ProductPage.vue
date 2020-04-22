@@ -1,6 +1,6 @@
 
 <template>
-  <section id="app-body" class="product-page">
+  <section class="product-page">
     <h1 class="product-name">{{itemName}}</h1>
 
     <div class="product-information">
@@ -46,6 +46,7 @@
 
           <div v-if="manufacturerID" class="product-manufacturer product-detail-item">
             <span class="product-label">Manufacturer</span>
+            <span class="detail-text">{{itemID}}</span>
             <img :src="clientLogo"/>
           </div>
         </div>
@@ -113,6 +114,14 @@ export default {
 
 <style lang="scss" scoped>
   .product {
+    &-page {
+      max-width: 1600px;
+      margin: auto;
+      padding: 80px 20px 20px;
+      @include mobile {
+        padding-top: 20px;
+      }
+    }
     &-information {
       display: flex;
       margin: 30px 0;

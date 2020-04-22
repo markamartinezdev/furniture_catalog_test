@@ -1,5 +1,5 @@
 <template>
-  <div id="app-body" class="catalog">
+  <div class="catalog">
     <product v-for="item in items"
       :key="item.ItemId"
       :price="item.BasePrice"
@@ -39,5 +39,11 @@ export default {
   .catalog {
     display: flex;
     flex-wrap: wrap;
+    max-width: 1600px;
+    margin: auto;
+    padding: 80px 20px 20px;
+    @include mobile {
+      padding-top: 20px;
+    }
   }
 </style>
