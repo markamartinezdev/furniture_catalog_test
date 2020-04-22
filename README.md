@@ -1,4 +1,4 @@
-# imc_test
+# test_application
 
 ## Project setup
 ```

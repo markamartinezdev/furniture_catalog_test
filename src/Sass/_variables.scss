@@ -1,0 +1,36 @@
+// Layout variables
+$max-width: 1600px !default;
+
+// Colors
+$color-primary: #000 !default;
+$color-secondary: #777 !default;
+
+// Button colors
+$button-color: #9ac0bb !default;
+$button-color-disabled: #c5c5c5 !default;
+
+// Fonts
+@font-face {
+  font-family: 'icons';
+  src: url("~@/assets/fonts/icons/font-icons.ttf") format("ttf"),
+      url("~@/assets/fonts/icons/font-icons.woff") format("woff");
+}
+
+// Breakpoints
+@mixin mobile {
+  @media only screen and (max-width: 600px) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media only screen and (min-width: 600px) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media only screen and (min-width: 1024px) {
+    @content;
+  }
+}
