@@ -46,8 +46,8 @@
 
           <div v-if="manufacturerID" class="product-manufacturer product-detail-item">
             <span class="product-label">Manufacturer</span>
-            <span class="detail-text">{{itemID}}</span>
-            <img :src="clientLogo"/>
+            <span class="detail-text">{{CompanyName}}</span>
+            <img class="product-manufacturer-image" :src="clientLogo"/>
           </div>
         </div>
       </div>
@@ -58,7 +58,10 @@
 <script>
 // For personal code style preference
 /* eslint-disable no-trailing-spaces */
-import { items, ManufacturerID, priceKey } from '../TestData.json';
+
+import { 
+  items, ManufacturerID, priceKey, CompanyName,
+} from '../TestData.json';
 
 export default {
   props: {
@@ -80,6 +83,7 @@ export default {
       meterial: '',
       manufacturerID: 0,
       onHandQuantity: 0,
+      CompanyName: '',
     };
   },
   mounted() {
@@ -98,6 +102,7 @@ export default {
     this.meterial = item.udf17;
     this.onHandQuantity = item.OnHandQuantity;
 
+    this.CompanyName = CompanyName;
     // Set manufacturer id
     this.manufacturerID = ManufacturerID;
   },
@@ -173,6 +178,9 @@ export default {
     }
     &-pricing {
       padding-bottom: 20px;
+    }
+    &-manufacturer-image{
+      display: block;
     }
     &-price {
       font-size: 30px;
