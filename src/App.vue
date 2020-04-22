@@ -37,7 +37,7 @@ export default {
     overflow: auto;
     padding: 40px 20px 20px;
     width:100%;
-        max-width: $max-width;
+    max-width: $max-width;
     margin: 0 auto;
     height: 100%;
     @include mobile {

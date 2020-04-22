@@ -176,13 +176,4 @@ export default {
       margin-bottom: 30px;
     }
   }
-  .similar-products {
-    display: inline-block;
-    margin-top: 30px;
-    width: 100%;
-    text-align: left;
-    &-label {
-      font-size: 25px;
-    }
-  }
 </style>
