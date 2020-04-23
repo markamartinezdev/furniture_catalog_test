@@ -11,9 +11,6 @@
       </div>
     </div>
 
-    <!-- Company name -->
-    <div class="header-company-name">{{companyName}}</div>
-
     <!-- Actions on the right side of header (cart, user settings...) -->
     <div class="header-right-actions">
       <div class="header-contact">
@@ -66,9 +63,10 @@ export default {
 
 <style lang='scss' scoped>
 header {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    background-color: #f9f9f9;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
     padding: 15px;
     box-shadow: 1px 1px 10px 1px #ececec;
     @include mobile {
@@ -110,11 +108,6 @@ header {
   &-contact-text {
     display: inline-block;
     margin: 0 5px;
-    @include mobile {
-      font-size: 12px;
-      margin: 0;
-      display: block;
-    }
     &.phone-number:before {
       content: '\e942';
       font-family: 'icons';

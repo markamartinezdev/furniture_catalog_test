@@ -1,5 +1,8 @@
 <template>
-  <div class="catalog">
+<section id="app-body">
+  <div class="container message" v-html="message">
+  </div>
+  <div class=" container catalog">
     <product v-for="item in items"
       :key="item.ItemId"
       :price="item.BasePrice"
@@ -9,25 +12,29 @@
       :photoName="item.PhotoName"
     />
   </div>
+</section>
 </template>
 
 <script>
 // Test data - only importing data we need in this component
 import Product from '@/components/Product.vue';
 
-import { items } from '../TestData.json';
+import { items, Message } from '../TestData.json';
 
 export default {
   name: 'Catalog',
   data() {
     return {
       items: [],
+      massage: '',
     };
   },
   mounted() {
     // Fetch would be here
     // Get and set new items data
     this.items = items;
+
+    this.message = Message;
   },
   components: {
     Product,
@@ -36,14 +43,26 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  .wrapper {
+    max-width: $max-width;
+    margin: auto;
+    padding: 20px;
+  }
   .catalog {
     display: flex;
     flex-wrap: wrap;
-    max-width: 1600px;
-    margin: auto;
-    padding: 80px 20px 20px;
+    padding-top: 20px;
+
+  }
+  .message {
+    padding: 20px;
+    background: #fff;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 20px;
+    line-height: 1.5;
     @include mobile {
-      padding-top: 20px;
+      font-size: 15px;
     }
   }
 </style>

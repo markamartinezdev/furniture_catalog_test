@@ -1,6 +1,6 @@
 <template>
   <div class="product">
-    <router-link :to="{name:'product', params:{id:productId}}">
+    <router-link class="product-container" :to="{name:'product', params:{id:productId}}">
       <div class="product-image">
         <img :src="`${photoName}?width=650&height=650`">
       </div>
@@ -50,9 +50,11 @@ export default {
 <style lang="scss" scoped>
 .product {
   display: inline-block;
+  padding: 10px;
   @include mobile {
     flex: 1 0 100%;
     margin-bottom: 20px;
+    padding: 0;
     }
   @include tablet {
     flex: 0 0 calc(100% / 2);
@@ -60,17 +62,25 @@ export default {
   @include desktop {
     flex: 0 0 calc(100% / 4);
   }
+  &-container {
+    display: block;
+    background: #fff;
+    height: 100%;
+    border-radius: 10px;
+    padding-top: 20px;
+  }
   &-image {
     display: block;
-    max-width: 290px;
+    max-width: 250px;
     margin: auto;
     img {
       width: 100%;
     }
   }
   &-details {
-    max-width: 290px;
+    max-width: 250px;
     margin: auto;
+    padding: 40px 0 20px;
     text-align: left;
   }
   &-detail {

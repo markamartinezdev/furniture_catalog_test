@@ -1,9 +1,7 @@
 <template>
   <div id="app">
     <app-header/>
-    <div id="app-body">
-      <router-view/>
-    </div>
+    <router-view/>
   </div>
 </template>
 
@@ -40,6 +38,16 @@ export default {
     width:100%;
     margin: 0 auto;
     height: 100%;
+    background: #f4f4f5;
+    padding: 10px;
+    @include desktop {
+      padding-top: 20px;
+    }
+  }
+
+  .container {
+    max-width: $max-width;
+    margin: auto;
   }
 
   a {
