@@ -45,9 +45,6 @@ export default {
     };
   },
   computed: {
-    clientLogo() {
-      return `http://images.repzio.com/productimages/${this.manufacturerId}/logo${this.manufacturerId}_lg.jpg`;
-    },
     showBackButton() {
       // Only show back button on product page
       return this.$route.name === 'product';

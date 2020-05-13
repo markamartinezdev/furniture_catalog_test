@@ -2,7 +2,7 @@
   <div class="product">
     <router-link class="product-container" :to="{name:'product', params:{id:productId}}">
       <div class="product-image">
-        <img :src="`${photoName}?width=650&height=650`">
+        <img :src="`${photoName}`">
       </div>
       <div class="product-details">
         <span class="product-name product-detail">{{itemName}}</span>

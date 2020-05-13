@@ -7,7 +7,7 @@
       <div class="product-information">
         <div class="product-left">
           <div class="product-image-wrapper" >
-            <img class="product-image" :src="photoName+'?width=450&height=450'">
+            <img class="product-image" :src="photoName">
           </div>
         </div>
 
@@ -45,10 +45,10 @@
               <span class="detail-text">{{itemID}}</span>
             </div>
 
-            <div v-if="manufacturerID" class="product-manufacturer product-detail-item">
+            <div v-if="manufacturerLogo" class="product-manufacturer product-detail-item">
               <span class="product-label">Manufacturer</span>
-              <span class="detail-text">{{CompanyName}}</span>
-              <img class="product-manufacturer-image" :src="clientLogo"/>
+              <span class="detail-text">{{companyName}}</span>
+              <img class="product-manufacturer-image" :src="manufacturerLogo"/>
             </div>
           </div>
         </div>
@@ -86,6 +86,7 @@ export default {
       manufacturerID: 0,
       onHandQuantity: 0,
       CompanyName: '',
+      manufacturerLogo: '',
     };
   },
   mounted() {
@@ -103,15 +104,13 @@ export default {
     this.color = item.udf16;
     this.meterial = item.udf17;
     this.onHandQuantity = item.OnHandQuantity;
+    this.manufacturerLogo = item.ManufacturerLogo;
+    this.companyName = CompanyName;
 
-    this.CompanyName = CompanyName;
     // Set manufacturer id
     this.manufacturerID = ManufacturerID;
   },
   computed: {
-    clientLogo() {
-      return `http://images.repzio.com/productimages/${this.manufacturerID}/logo${this.manufacturerID}_lg.jpg?width=100`;
-    },
     available() {
       return this.onHandQuantity > 0 ? `${this.onHandQuantity} available` : 'Out of stock';
     },
@@ -178,6 +177,7 @@ export default {
       display: block;
       margin: auto;
       width: 100%;
+      max-width: 460px;
     }
     &-image-wrapper {
       max-width: 650px;
@@ -201,6 +201,7 @@ export default {
     }
     &-manufacturer-image {
       display: block;
+      max-width: 50px
     }
   }
 </style>
