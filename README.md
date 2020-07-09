@@ -1,5 +1,7 @@
 # furniture_catalog
 
+Mock Furniture catalog with shopping cart. Built with Vue, Vuex, and Vue-router
+
 ## Project setup
 ```
 yarn install
