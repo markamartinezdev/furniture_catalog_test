@@ -1,6 +1,9 @@
 <template>
 <section id="app-body">
-  <div class="container message" v-html="message">
+  <div class="container add">
+    <div class="home-ad">
+
+    </div>
   </div>
   <div class=" container catalog">
     <product v-for="item in items"
@@ -41,28 +44,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss" scoped>
-  .wrapper {
-    max-width: $max-width;
-    margin: auto;
-    padding: 20px;
-  }
-  .catalog {
-    display: flex;
-    flex-wrap: wrap;
-    padding-top: 20px;
-
-  }
-  .message {
-    padding: 20px;
-    background: #fff;
-    border-radius: 10px;
-    text-align: center;
-    font-size: 20px;
-    line-height: 1.5;
-    @include mobile {
-      font-size: 15px;
-    }
-  }
-</style>

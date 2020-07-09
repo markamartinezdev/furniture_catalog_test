@@ -1,0 +1,13 @@
+.catalog {
+  display: flex;
+  flex-wrap: wrap;
+  padding-top: 20px;
+
+}
+.home-ad {
+  background: url('/assets/images/homepagead.jpg');
+  min-height: 400px;
+  width: 100%;
+  background-position: center;
+  background-size: cover;
+}

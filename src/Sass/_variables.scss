@@ -1,20 +1,15 @@
 // Layout variables
-$max-width: 1600px !default;
+$max-width: 1280px !default;
 
 // Colors
-$color-primary: #000 !default;
+$color-primary: darken(#2da4c4, 30%) !default;
 $color-secondary: #777 !default;
+$color-button: #2da4c4 !default;
+$color-button-secondary: #ff5f5f !default;
 
 // Button colors
 $button-color: #9ac0bb !default;
 $button-color-disabled: #c5c5c5 !default;
-
-// Fonts
-@font-face {
-  font-family: 'icons';
-  src: url("~@/assets/fonts/icons/font-icons.ttf") format("ttf"),
-      url("~@/assets/fonts/icons/font-icons.woff") format("woff");
-}
 
 // Breakpoints
 @mixin mobile {

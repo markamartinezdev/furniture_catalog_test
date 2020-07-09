@@ -2,53 +2,56 @@
 <template>
   <section id="app-body">
     <div class="container product-page">
-      <h1 class="product-name">{{itemName}}</h1>
+      <div class="button button--back icon icon--arrow" @click="previousPage">Back</div>
 
-      <div class="product-information">
-        <div class="product-left">
-          <div class="product-image-wrapper" >
-            <img class="product-image" :src="photoName">
+      <h1 class="product-page--product-name">{{item.itemName}}</h1>
+
+      <div class="product-page--product-information">
+        <div class="product-page--product-left">
+          <div class="product-page--product-image-wrapper" >
+            <img class="product-page--product-image" :src="item.photoName">
           </div>
         </div>
 
-        <div class="product-right">
-          <div class="product-right-top">
-            <span class="product-price">${{price}}</span>
-            <span class="product-available">{{available}}</span>
+        <div class="product-page--product-right">
+          <div class="product-page--product-right-top">
+            <span class="product-page--product-price">${{item.price}}</span>
+            <span class="product-page--product-available">{{available}}</span>
+            <span class="button" v-if="this.item.onHandQuantity > 0" @click="addToCart">add to cart</span>
           </div>
 
-          <div class="product-details">
-            <h2 class="product-details-header">Product Details</h2>
+          <div class="product-page--product-details">
+            <h2 class="product-page--product-details-header">Product Details</h2>
 
-            <div v-if="description" class="product-description product-detail-item">
-              <span class="product-label">Description</span>
-              <span class="detail-text">{{description}}</span>
+            <div v-if="item.description" class="product-page--product-description product-page--product-detail-item">
+              <span class="product-page--product-label">Description</span>
+              <span class="detail-text">{{item.description}}</span>
             </div>
 
-            <div v-if="dimensions" class="product-messurments product-detail-item">
-              <span class="product-label">Dimensions</span>
-              <span class="detail-text">{{dimensions}}</span>
+            <div v-if="item.dimensions" class="product-page--product-messurments product-page--product-detail-item">
+              <span class="product-page--product-label">Dimensions</span>
+              <span class="detail-text">{{item.dimensions}}</span>
             </div>
 
-            <div v-if="color" class="product-colors product-detail-item">
-              <span class="product-label">Color</span>
-              <span class="detail-text">{{color}}</span>
+            <div v-if="item.color" class="product-page--product-colors product-page--product-detail-item">
+              <span class="product-page--product-label">Color</span>
+              <span class="detail-text">{{item.color}}</span>
             </div>
 
-            <div v-if="meterial" class="product-meterial product-detail-item">
-              <span class="product-label">Meterial</span>
-              <span class="detail-text">{{meterial}}</span>
+            <div v-if="item.meterial" class="product-page--product-meterial product-page--product-detail-item">
+              <span class="product-page--product-label">Meterial</span>
+              <span class="detail-text">{{item.meterial}}</span>
             </div>
 
-            <div v-if="itemID" class="product-id product-detail-item">
-              <span class="product-label">Product Id</span>
-              <span class="detail-text">{{itemID}}</span>
+            <div v-if="item.id" class="product-page--product-id product-page--product-detail-item">
+              <span class="product-page--product-label">Product Id</span>
+              <span class="detail-text">{{item.iD}}</span>
             </div>
 
-            <div v-if="manufacturerLogo" class="product-manufacturer product-detail-item">
-              <span class="product-label">Manufacturer</span>
-              <span class="detail-text">{{companyName}}</span>
-              <img class="product-manufacturer-image" :src="manufacturerLogo"/>
+            <div v-if="item.manufacturerLogo" class="product-page--product-manufacturer product-page--product-detail-item">
+              <span class="product-page--product-label">Manufacturer</span>
+              <span class="detail-text">{{item.companyName}}</span>
+              <img class="product-page--product-manufacturer-image" :src="item.manufacturerLogo"/>
             </div>
           </div>
         </div>
@@ -59,11 +62,8 @@
 
 <script>
 // For personal code style preference
-/* eslint-disable no-trailing-spaces */
-
-import {
-  items, ManufacturerID, priceKey, CompanyName,
-} from '../TestData.json';
+import { mapActions } from 'vuex';
+import { items, priceKey, CompanyName } from '../TestData.json';
 
 export default {
   props: {
@@ -75,18 +75,19 @@ export default {
   },
   data() {
     return {
-      itemID: '',
-      itemName: '',
-      description: '',
-      dimensions: '',
-      price: 0,
-      photoName: '',
-      color: '',
-      meterial: '',
-      manufacturerID: 0,
-      onHandQuantity: 0,
-      CompanyName: '',
-      manufacturerLogo: '',
+      item: {
+        id: '',
+        itemName: '',
+        description: '',
+        dimensions: '',
+        price: 0,
+        photoName: '',
+        color: '',
+        meterial: '',
+        onHandQuantity: 0,
+        CompanyName: '',
+        manufacturerLogo: '',
+      }
     };
   },
   mounted() {
@@ -95,113 +96,35 @@ export default {
     const item = items.find((i) => i.ProductID === this.id);
 
     // Set componenth data from the returned item
-    this.itemID = item.ItemID;
-    this.itemName = item.ItemName;
-    this.description = item.Description;
-    this.dimensions = item.Dimensions;
-    this.price = item[priceKey];
-    this.photoName = item.PhotoName;
-    this.color = item.udf16;
-    this.meterial = item.udf17;
-    this.onHandQuantity = item.OnHandQuantity;
-    this.manufacturerLogo = item.ManufacturerLogo;
-    this.companyName = CompanyName;
-
-    // Set manufacturer id
-    this.manufacturerID = ManufacturerID;
+    this.item.id = item.ItemID;
+    this.item.productId = item.ProductID
+    this.item.itemName = item.ItemName;
+    this.item.description = item.Description;
+    this.item.dimensions = item.Dimensions;
+    this.item.price = item[priceKey];
+    this.item.photoName = item.PhotoName;
+    this.item.color = item.udf16;
+    this.item.meterial = item.udf17;
+    this.item.onHandQuantity = item.OnHandQuantity;
+    this.item.manufacturerLogo = item.ManufacturerLogo;
+    this.item.companyName = CompanyName;
+  },
+  methods: {
+    ...mapActions({
+      addItemToCart: 'shoppingCart/addItemToCart'
+    }),
+    addToCart() {
+      this.addItemToCart(this.item)
+    },
+    previousPage() {
+      this.$router.go(-1);
+    },
   },
   computed: {
     available() {
-      return this.onHandQuantity > 0 ? `${this.onHandQuantity} available` : 'Out of stock';
+      return this.item.onHandQuantity > 0 ? `${this.item.onHandQuantity} available` : 'Out of stock';
     },
   },
 };
 </script>
 
-<style lang="scss" scoped>
-  .product {
-    &-page {
-      max-width: 1600px;
-      padding: 20px;
-      background: #fff;
-      @include mobile {
-        padding-top: 20px;
-        margin-top: 10px;
-      }
-    }
-    &-information {
-      display: flex;
-      margin: 30px 0;
-      flex-wrap: wrap;
-    }
-    &-label {
-      display: block;
-      font-weight: 600;
-      margin-bottom: 5px;
-    }
-    &-left {
-      margin: auto auto 30px;
-      width: 100%;
-      @include desktop {
-        width: auto;
-        margin:auto 30px auto;
-      }
-    }
-    &-right {
-      flex: 1;
-      @include desktop {
-        margin-left: 30px;
-      }
-    }
-    &-right-top {
-      border-bottom: dotted 2px #cacaca;
-      text-align: left;
-      padding-bottom: 15px;
-      margin-bottom: 15px;
-    }
-    &-details-header {
-      font-size: 25px;
-      margin-bottom: 15px;
-    }
-    &-details {
-      text-align: left;
-    }
-    &-name {
-      font-size: 25px;
-      text-align: left;
-      margin: 0 0 30px;
-      display: inline-block;
-      width: 100%;
-    }
-    &-image {
-      display: block;
-      margin: auto;
-      width: 100%;
-      max-width: 460px;
-    }
-    &-image-wrapper {
-      max-width: 650px;
-      margin: auto;
-    }
-    &-pricing {
-      padding-bottom: 20px;
-    }
-    &-manufacturer-image{
-      display: block;
-    }
-    &-price {
-      font-size: 30px;
-    }
-    &-available {
-      display: block;
-      margin-top: 15px;
-    }
-    &-detail-item {
-      margin-bottom: 30px;
-    }
-    &-manufacturer-image {
-      display: block;
-      max-width: 50px
-    }
-  }
-</style>

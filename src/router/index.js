@@ -1,7 +1,8 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import Catalog from '../views/CatalogPage.vue';
-import Product from '../views/ProductPage.vue';
+import Catalog from '@/views/CatalogPage';
+import Product from '@/views/ProductPage';
+import ShoppingCart from '@/views/ShoppingCart';
 
 
 Vue.use(VueRouter);
@@ -17,6 +18,11 @@ const routes = [
     name: 'product',
     props: (route) => ({ id: parseInt(route.params.id, 10) }),
     component: Product,
+  },
+  {
+    path: '/shopping-cart',
+    name: 'shopping-cart',
+    component: ShoppingCart,
   },
 ];
 

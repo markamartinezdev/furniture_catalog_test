@@ -1,0 +1,46 @@
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+  padding: 15px;
+  box-shadow: 1px 1px 10px 1px #ececec;
+  @include mobile {
+    padding: 10px;
+  }
+}
+.header {
+&-left-actions {
+  text-align: left;
+  display: flex;
+  align-items: center;
+}
+&-company-name {
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+&-cart-icon {
+  align-items: center;
+  display: flex;
+  &:after {
+    font-family: 'icons';
+    content:'\e93a'
+  }
+  &:before {
+    content: attr(number-of-items);
+    background: $color-button-secondary;
+    padding: 3px;
+    border-radius: 100%;
+    width: 15px;
+    height: 15px;
+    font-size: 0.6em;
+    color: #fff;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    line-height: .1;
+  }
+}
+}

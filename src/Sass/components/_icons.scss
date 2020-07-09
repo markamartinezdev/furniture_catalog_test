@@ -1,0 +1,15 @@
+.icon {
+  &:before {
+    font-family: 'icons';
+  }
+  &--arrow {
+    &:before {
+      content: "\ea38";
+    } 
+  }
+  &--delete {
+    &:before {
+      content: '\ea0d';
+    }
+  }
+}
